@@ -9,15 +9,18 @@ export default new Vuex.Store({
     currentFacts: [],
   },
   mutations: {
-    setFacts(state, value) {
+    SET_FACTS(state, value) {
       state.currentFacts = value;
     },
   },
   actions: {
     fetchFacts({ commit }, query) {
       return api.queryFacts(query).then(({ data }) => {
-        commit(data.result);
+        commit("SET_FACTS", data.result);
       });
+    },
+    clearFacts({ commit }) {
+      commit("SET_FACTS", []);
     },
   },
 });
