@@ -14,18 +14,17 @@
             v-for="(fact, index) in $store.state.currentFacts"
             :key="fact.id"
             :index="index + 1"
+            @click="goToFactPage(fact)"
           >
             {{ fact.value }}
           </fact-card>
         </template>
       </template>
     </div>
-    <base-loading v-show="$store.state.isLoading" />
   </div>
 </template>
 
 <script>
-import BaseLoading from "@/components/BaseLoading.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import FactCard from "@/components/FactCard.vue";
 import { mapGetters } from "vuex";
@@ -33,7 +32,6 @@ import { mapGetters } from "vuex";
 export default {
   name: "Home",
   components: {
-    BaseLoading,
     PageHeader,
     FactCard,
   },
@@ -41,6 +39,17 @@ export default {
     ...mapGetters({
       currentFacts: "getCurrentFacts",
     }),
+  },
+  methods: {
+    goToFactPage({ id, value }) {
+      this.$router.push({
+        name: "fact-page",
+        params: {
+          id,
+          value,
+        },
+      });
+    },
   },
 };
 </script>

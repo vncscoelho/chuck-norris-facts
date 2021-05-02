@@ -1,8 +1,19 @@
 <template>
   <div id="app">
     <router-view />
+    <base-loading v-show="$store.state.isLoading" />
   </div>
 </template>
+
+<script>
+import BaseLoading from "@/components/BaseLoading.vue";
+
+export default {
+  components: {
+    BaseLoading,
+  },
+};
+</script>
 
 <style src="@/assets/styles/reset.css" />
 <style lang="scss">
