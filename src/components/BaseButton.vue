@@ -28,7 +28,7 @@ export default {
   color: #fff;
   border: 0;
   background: none;
-  transition: 150ms ease-in;
+  transition: $default-transition;
   transition-property: color, background-color;
 
   &:hover {
