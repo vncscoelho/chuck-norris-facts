@@ -9,10 +9,10 @@
         </h1>
       </div>
       <div class="page-header__row">
-        <search-box />
+        <search-box v-model="currentQuery" />
       </div>
       <div class="page-header__row">
-        <base-button primary>SEARCH</base-button>
+        <base-button primary @click="submitQuery">SEARCH</base-button>
         <base-button>FEELING LUCKY</base-button>
       </div>
     </div>
@@ -27,6 +27,18 @@ export default {
   components: {
     SearchBox,
     BaseButton,
+  },
+  data() {
+    return {
+      currentQuery: "",
+    };
+  },
+  methods: {
+    submitQuery() {
+      this.$api
+        .queryFacts(this.currentQuery)
+        .then(({ data }) => console.log(data));
+    },
   },
 };
 </script>

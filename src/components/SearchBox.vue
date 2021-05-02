@@ -1,6 +1,8 @@
 <template>
   <div class="search-box">
     <input
+      :value="value"
+      @input="$emit('input', $event.target.value)"
       type="text"
       class="search-box__input"
       placeholder="Search for a fact or keyword here"
@@ -9,7 +11,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    value: {
+      type: String,
+      default: "",
+    },
+  },
+};
 </script>
 
 <style lang="scss">

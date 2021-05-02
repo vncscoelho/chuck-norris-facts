@@ -1,4 +1,4 @@
-import chuckNorrisAPI from "@/api/chuck_norris";
+import chuckNorrisAPI from "@/api/chuckNorrisAPI";
 
 export default {
   install(Vue) {

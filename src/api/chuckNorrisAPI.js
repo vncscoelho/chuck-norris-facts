@@ -8,7 +8,7 @@ export default {
   getRandom() {
     return instance.get("jokes/random");
   },
-  queryFact(query) {
+  queryFacts(query) {
     return instance.get(`/jokes/search?query=${query}`);
   },
 };
