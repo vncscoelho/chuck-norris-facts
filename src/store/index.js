@@ -6,8 +6,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    currentFacts: [],
+    currentFacts: null,
     isLoading: false,
+  },
+  getters: {
+    getCurrentFacts({ currentFacts }) {
+      if (isNaN(currentFacts?.length)) {
+        return null;
+      }
+      return currentFacts;
+    },
   },
   mutations: {
     SET_FACTS(state, value) {

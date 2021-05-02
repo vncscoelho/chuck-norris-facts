@@ -2,13 +2,21 @@
   <div class="home">
     <page-header />
     <div class="container">
-      <fact-card
-        v-for="(fact, index) in $store.state.currentFacts"
-        :key="fact.id"
-        :index="index + 1"
-      >
-        {{ fact.value }}
-      </fact-card>
+      <p v-if="currentFacts === null">
+        Search for keyworks or try a random one.
+      </p>
+      <template v-else>
+        <p v-if="currentFacts.length === 0">No results found.</p>
+        <template v-else>
+          <fact-card
+            v-for="(fact, index) in $store.state.currentFacts"
+            :key="fact.id"
+            :index="index + 1"
+          >
+            {{ fact.value }}
+          </fact-card>
+        </template>
+      </template>
     </div>
     <base-loading v-show="$store.state.isLoading" />
   </div>
@@ -18,6 +26,7 @@
 import BaseLoading from "@/components/BaseLoading.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import FactCard from "@/components/FactCard.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
@@ -25,6 +34,11 @@ export default {
     BaseLoading,
     PageHeader,
     FactCard,
+  },
+  computed: {
+    ...mapGetters({
+      currentFacts: "getCurrentFacts",
+    }),
   },
 };
 </script>
