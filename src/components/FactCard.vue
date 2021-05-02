@@ -1,6 +1,6 @@
 <template>
   <div class="fact-card">
-    <span class="fact-card__index">#01</span>
+    <span class="fact-card__index">#{{ count }}</span>
     <p class="fact-card__content">
       <slot />
     </p>
@@ -8,7 +8,19 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    index: {
+      type: Number,
+      default: 0,
+    },
+  },
+  computed: {
+    count() {
+      return this.index < 10 ? `0${this.index}` : this.index;
+    },
+  },
+};
 </script>
 
 <style lang="scss">
