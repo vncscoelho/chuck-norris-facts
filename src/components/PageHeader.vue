@@ -8,14 +8,27 @@
           <span>Facts</span>
         </h1>
       </div>
-      <div class="page-header__row"></div>
-      <div class="page-header__row"></div>
+      <div class="page-header__row">
+        <search-box />
+      </div>
+      <div class="page-header__row">
+        <base-button primary>SEARCH</base-button>
+        <base-button>FEELING LUCKY</base-button>
+      </div>
     </div>
   </header>
 </template>
 
 <script>
-export default {};
+import SearchBox from "@/components/SearchBox";
+import BaseButton from "@/components/BaseButton";
+
+export default {
+  components: {
+    SearchBox,
+    BaseButton,
+  },
+};
 </script>
 
 <style lang="scss">
@@ -24,7 +37,7 @@ export default {};
 
   &__row {
     & + & {
-      border-top: 1px solid $borders-darker;
+      border-top: 1px solid $text;
     }
   }
 
@@ -39,6 +52,10 @@ export default {};
     span {
       display: block;
     }
+  }
+
+  .base-button {
+    width: 50%;
   }
 }
 </style>
