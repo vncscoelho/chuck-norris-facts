@@ -26,6 +26,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    clearFacts({ commit }) {
+      commit("SET_FACTS", []);
+    },
     fetchFacts({ commit }, query) {
       commit("SET_LOADING", true);
       return api
@@ -37,8 +40,19 @@ export default new Vuex.Store({
           commit("SET_LOADING", false);
         });
     },
-    clearFacts({ commit }) {
-      commit("SET_FACTS", []);
+    findFact({ commit }, id) {
+      commit("SET_LOADING", true);
+      return api
+        .getFact(id)
+        .then(({ data }) => data)
+        .finally(() => commit("SET_LOADING", false));
+    },
+    fetchRandomFact({ commit }) {
+      commit("SET_LOADING", true);
+      return api
+        .getRandomFact()
+        .then(({ data }) => data)
+        .finally(() => commit("SET_LOADING", false));
     },
   },
 });

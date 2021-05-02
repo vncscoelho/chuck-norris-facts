@@ -5,8 +5,11 @@ const instance = axios.create({
 });
 
 export default {
-  getRandom() {
+  getRandomFact() {
     return instance.get("jokes/random");
+  },
+  getFact(id) {
+    return instance.get(`jokes/${id}`);
   },
   queryFacts(query) {
     return instance.get(`/jokes/search?query=${query}`);

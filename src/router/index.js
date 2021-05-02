@@ -7,19 +7,20 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home,
   },
-  /*  {
+  {
     path: "/search/:query",
-    name: "Fact",
+    name: "fact-search",
     component: Home,
   },
   {
     path: "/fact/:id",
-    name: "Fact",
-    component: () => import("../views/Fact.vue"),
-  }, */
+    name: "fact-page",
+    props: true,
+    component: () => import("../views/FactPage.vue"),
+  },
   {
     path: "*",
     name: "404",

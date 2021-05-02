@@ -1,5 +1,5 @@
 <template>
-  <div class="fact-card">
+  <div class="fact-card" @click="$emit('click')">
     <span class="fact-card__index">#{{ count }}</span>
     <p class="fact-card__content">
       <slot />
