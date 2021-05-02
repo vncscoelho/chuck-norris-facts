@@ -9,4 +9,9 @@
 body {
   font-family: "Work Sans", sans-serif;
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 </style>
