@@ -3,9 +3,7 @@
     <div class="container">
       <div class="page-header__row">
         <h1 class="logo">
-          <span>Chuck</span>
-          <span>Norris</span>
-          <span>Facts</span>
+          <page-logo />
         </h1>
       </div>
       <div class="page-header__row">
@@ -20,11 +18,13 @@
 </template>
 
 <script>
+import PageLogo from "@/components/PageLogo";
 import SearchBox from "@/components/SearchBox";
 import BaseButton from "@/components/BaseButton";
 
 export default {
   components: {
+    PageLogo,
     SearchBox,
     BaseButton,
   },
@@ -35,9 +35,7 @@ export default {
   },
   methods: {
     submitQuery() {
-      this.$api
-        .queryFacts(this.currentQuery)
-        .then(({ data }) => console.log(data));
+      this.$store.dispatch("fetchFacts", this.currentQuery);
     },
   },
 };
@@ -55,10 +53,6 @@ export default {
 
   .logo {
     padding: 2rem;
-    font-size: 2em;
-    font-weight: bolder;
-    text-transform: uppercase;
-    line-height: 0.75;
     color: $primary;
 
     span {
