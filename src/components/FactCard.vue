@@ -29,8 +29,14 @@ export default {
   transition: $default-transition;
   transition-property: background-color;
 
+  & + & {
+    border-top: 1px solid $borders;
+  }
+
   &__index {
+    display: block;
     color: $borders-darker;
+    margin-bottom: 0.3em;
   }
 
   &__content {

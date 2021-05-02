@@ -2,11 +2,13 @@
   <div class="home">
     <page-header />
     <div class="container">
-      <p v-if="currentFacts === null">
+      <p v-if="currentFacts === null" class="home__error-msg">
         Search for keyworks or try a random one.
       </p>
       <template v-else>
-        <p v-if="currentFacts.length === 0">No results found.</p>
+        <p v-if="currentFacts.length === 0" class="home__error-msg">
+          No results found.
+        </p>
         <template v-else>
           <fact-card
             v-for="(fact, index) in $store.state.currentFacts"
@@ -42,3 +44,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.home {
+  &__error-msg {
+    text-align: center;
+    padding: 2em 0;
+  }
+}
+</style>
