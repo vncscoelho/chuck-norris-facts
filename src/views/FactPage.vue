@@ -142,7 +142,7 @@ export default {
     video {
       position: absolute;
       top: 0;
-      right: -40vw;
+      right: -50vh;
       height: 100%;
       width: auto;
       max-width: none;

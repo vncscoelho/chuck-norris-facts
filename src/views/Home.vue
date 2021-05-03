@@ -56,6 +56,27 @@ export default {
 
 <style lang="scss">
 .home {
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+
+  .container {
+    height: 100%;
+    width: 100%;
+    border-left: 1px solid $borders;
+    border-right: 1px solid $borders;
+
+    &:last-of-type {
+      border-bottom: 1px solid $borders;
+    }
+  }
+
+  .page-header {
+    .container {
+      border-color: $text;
+    }
+  }
+
   &__error-msg {
     text-align: center;
     padding: 2em 0;
