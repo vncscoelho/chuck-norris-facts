@@ -14,12 +14,19 @@
         />
       </div>
       <div class="page-header__row">
-        <base-button primary @click="validateAction('submitQuery')"
-          >SEARCH</base-button
+        <base-button
+          primary
+          @click="validateAction('submitQuery')"
+          ref="search-button"
         >
-        <base-button @click="validateAction('handleFeelingLucky')"
-          >FEELING LUCKY</base-button
+          SEARCH
+        </base-button>
+        <base-button
+          @click="validateAction('handleFeelingLucky')"
+          ref="lucky-button"
         >
+          FEELING LUCKY
+        </base-button>
       </div>
     </div>
   </header>
