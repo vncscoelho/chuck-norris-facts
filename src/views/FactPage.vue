@@ -38,7 +38,17 @@ export default {
   },
   created() {
     this.fetchMissingData(this.id, this.value);
-    this.registerVideoTrigger();
+    document.addEventListener("visibilitychange", ({ target }) =>
+      this.playVideo(target)
+    );
+  },
+  mounted() {
+    this.playVideo();
+  },
+  destroyed() {
+    document.removeEventListener("visibilitychange", ({ target }) =>
+      this.playVideo(target)
+    );
   },
   computed: {
     internalValue() {
@@ -48,7 +58,7 @@ export default {
   methods: {
     getRandomFact() {
       this.$store.dispatch("fetchRandomFact").then(({ id, value }) => {
-        this.$router.replace({
+        this.$router.push({
           name: "fact-page",
           params: {
             id,
@@ -67,15 +77,11 @@ export default {
         });
       }
     },
-    playVideo() {
-      this.$refs.chuckNorris.play();
-    },
-    registerVideoTrigger() {
-      document.addEventListener("visibilitychange", ({ target }) => {
-        if (target.visibilityState === "visible") {
-          this.playVideo();
-        }
-      });
+    playVideo(target) {
+      const state = target?.visibilityState || document.visibilityState;
+      if (state === "visible") {
+        this.$refs.chuckNorris.play();
+      }
     },
   },
 };
