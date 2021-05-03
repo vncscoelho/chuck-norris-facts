@@ -7,11 +7,19 @@
         </h1>
       </div>
       <div class="page-header__row">
-        <search-box v-model="currentQuery" />
+        <search-box
+          v-model="currentQuery"
+          :error="!inputValidation && inputTouched"
+          error-text="Query must contain at least 3 characters"
+        />
       </div>
       <div class="page-header__row">
-        <base-button primary @click="submitQuery">SEARCH</base-button>
-        <base-button>FEELING LUCKY</base-button>
+        <base-button primary @click="validateAction('submitQuery')"
+          >SEARCH</base-button
+        >
+        <base-button @click="validateAction('handleFeelingLucky')"
+          >FEELING LUCKY</base-button
+        >
       </div>
     </div>
   </header>
@@ -31,11 +39,38 @@ export default {
   data() {
     return {
       currentQuery: "",
+      inputTouched: false,
     };
   },
+  computed: {
+    inputValidation() {
+      return this.currentQuery.length >= 3;
+    },
+  },
   methods: {
+    validateAction(action) {
+      if (this.inputValidation === false) {
+        this.inputTouched = true;
+        return;
+      }
+
+      this[action]();
+    },
     submitQuery() {
       this.$store.dispatch("fetchFacts", this.currentQuery);
+    },
+    handleFeelingLucky() {
+      this.$store.dispatch("getFirstResult", this.currentQuery).then((data) => {
+        if (data) {
+          this.$router.push({
+            name: "fact-page",
+            params: {
+              id: data.id,
+              value: data.value,
+            },
+          });
+        }
+      });
     },
   },
 };

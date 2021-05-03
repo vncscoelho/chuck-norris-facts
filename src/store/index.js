@@ -54,5 +54,14 @@ export default new Vuex.Store({
         .then(({ data }) => data)
         .finally(() => commit("SET_LOADING", false));
     },
+    getFirstResult({ commit }, query) {
+      commit("SET_LOADING", true);
+      return api
+        .queryFacts(query)
+        .then(({ data }) => {
+          return data.result[0];
+        })
+        .finally(() => commit("SET_LOADING", false));
+    },
   },
 });
